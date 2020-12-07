@@ -1,0 +1,31 @@
+service: hello-serverless
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
+  memorySize: 256
+  timeout: 10
+
+functions:
+  hello:
+    handler: handler.hello
+    memorySize: 128
+    timeout: 3
+    vpc:
+      securityGroupIds:
+        - sg-48689b7a
+      subnetIds:
+        - subnet-b972ccdf
+        - subnet-e8fe8ee6
+        - subnet-cb2e9594
+
+  add:
+    handler: add.add
+    events:
+      - http: 
+          path: math/add
+          method: post
+          cors: true
