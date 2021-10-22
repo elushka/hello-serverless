@@ -1,5 +1,5 @@
 service: hello-serverless
-frameworkVersion: '2'
+frameworkVersion: '23'
 
 provider:
   name: aws
